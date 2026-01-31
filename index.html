@@ -99,12 +99,65 @@ section > div {
 <div class="app">
   <section id="menu" class="tela ativa menu">
     <h2>Menu Principal</h2>
-    <button onclick="irPara('inicioTurno')">▶ Iniciar Turno</button>
-    <button onclick="irPara('custos')">⛽ Lançar Custos / Ganhos</button>
-    <button onclick="irPara('fimTurno')">⏹ Finalizar Turno</button>
-    <button onclick="irPara('resumoDia')">📅 Resumo do Dia</button>
-    <button onclick="irPara('metasMensais')">📈 Metas Mensais</button>
-    <button onclick="irPara('historicoGeral')">📚 Histórico Geral</button>
+    <div class="card-menu" onclick="irPara('inicioTurno')">
+  <div class="card-icon">🚗</div>
+  <div class="card-text">
+    <div class="card-title">Gerenciar Turno</div>
+    <div class="card-desc">
+      Inicie, registre custos e finalize seu turno
+    </div>
+  </div>
+</div>
+
+<div class="card-menu" onclick="irPara('custos')">
+  <div class="card-icon">⛽</div>
+  <div class="card-text">
+    <div class="card-title">Custos e Ganhos</div>
+    <div class="card-desc">
+      Abastecimentos, despesas e valor apurado
+    </div>
+  </div>
+</div>
+
+<div class="card-menu" onclick="irPara('fimTurno')">
+  <div class="card-icon">⏹</div>
+  <div class="card-text">
+    <div class="card-title">Finalizar Turno</div>
+    <div class="card-desc">
+      Encerramento do turno e quilometragem final
+    </div>
+  </div>
+</div>
+
+<div class="card-menu" onclick="irPara('resumoDia')">
+  <div class="card-icon">📅</div>
+  <div class="card-text">
+    <div class="card-title">Resumo do Dia</div>
+    <div class="card-desc">
+      Resultados do dia e valor por hora
+    </div>
+  </div>
+</div>
+
+<div class="card-menu" onclick="irPara('metasMensais')">
+  <div class="card-icon">📈</div>
+  <div class="card-text">
+    <div class="card-title">Metas Mensais</div>
+    <div class="card-desc">
+      Acompanhe metas e custos fixos
+    </div>
+  </div>
+</div>
+
+<div class="card-menu" onclick="irPara('historicoGeral')">
+  <div class="card-icon">📚</div>
+  <div class="card-text">
+    <div class="card-title">Histórico Geral</div>
+    <div class="card-desc">
+      Todos os turnos e exportações
+    </div>
+  </div>
+</div>
   </section>
 
   <section id="inicioTurno" class="tela">
@@ -207,6 +260,7 @@ section > div {
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
