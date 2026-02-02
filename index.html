@@ -10,7 +10,7 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="stylesheet" href="./visual.css">
 
-  <!-- LIBS EXPORTAÇÃO -->
+  <!-- LIBS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -25,15 +25,27 @@
     <h2>👋 Bem-vindo</h2>
 
     <button onclick="irPara('inicioTurno')">
-      <span class="icone">▶️</span> Gerenciar Turno
+      <span class="icone">▶️</span> Iniciar Turno
+    </button>
+
+    <button onclick="irPara('custos')">
+      <span class="icone">⛽</span> Lançar Custos / Ganhos
+    </button>
+
+    <button onclick="irPara('fimTurno')">
+      <span class="icone">⏹</span> Finalizar Turno
     </button>
 
     <button onclick="irPara('resumoDia')">
-      <span class="icone">📊</span> Resumos, Metas e Histórico
+      <span class="icone">📅</span> Resumo do Dia
     </button>
 
-    <button onclick="irPara('manutencao')">
-      <span class="icone">🛠️</span> Manutenção
+    <button onclick="irPara('metasMensais')">
+      <span class="icone">📈</span> Metas Mensais
+    </button>
+
+    <button onclick="irPara('historicoGeral')">
+      <span class="icone">📚</span> Histórico Geral
     </button>
   </section>
 
@@ -49,17 +61,17 @@
 
     <div class="linha">
       <label>KM Inicial</label>
-      <input id="kmInicial" type="number" placeholder="12500">
+      <input id="kmInicial" type="number">
     </div>
 
     <button class="btn-save" onclick="confirmarInicioTurno()">✅ Iniciar Turno</button>
 
     <div class="nav">
-      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+      <button onclick="irPara('menu')">⬅️ Menu</button>
     </div>
   </section>
 
-  <!-- ================= CUSTOS E GANHOS ================= -->
+  <!-- ================= CUSTOS ================= -->
   <section id="custos" class="tela">
     <h2>⛽ Custos e Ganhos</h2>
 
@@ -98,18 +110,18 @@
     <button class="btn-save" onclick="inserirApurado()">💾 Salvar Dados</button>
 
     <div class="nav">
-      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
-      <button class="btn-secondary" onclick="irPara('fimTurno')">➡️ Finalizar</button>
+      <button onclick="irPara('menu')">⬅️ Menu</button>
+      <button onclick="irPara('fimTurno')">➡️ Finalizar</button>
     </div>
   </section>
 
   <!-- ================= FIM DE TURNO ================= -->
   <section id="fimTurno" class="tela">
-    <h2>⏹️ Fim de Turno</h2>
+    <h2>⏹ Finalizar Turno</h2>
 
     <div class="linha">
       <label>Hora Fim</label>
-      <input id="horaFim" type="tel" placeholder="18:40">
+      <input id="horaFim" type="tel">
       <button class="btn-icon" onclick="capturarHora('horaFim')">⏱️</button>
     </div>
 
@@ -118,38 +130,48 @@
       <input id="kmFinal" type="number">
     </div>
 
-    <button class="btn-danger" onclick="confirmarFimTurno()">⏹️ Encerrar Turno</button>
+    <button class="btn-danger" onclick="confirmarFimTurno()">⏹ Encerrar Turno</button>
 
     <div class="nav">
-      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+      <button onclick="irPara('menu')">⬅️ Menu</button>
     </div>
   </section>
 
   <!-- ================= RESUMO DO DIA ================= -->
   <section id="resumoDia" class="tela">
-    <h2>📊 Resumo do Dia</h2>
+    <h2>📅 Resumo do Dia</h2>
 
     <div class="box">
-      <div>Horas Trabalhadas: <strong id="diaHorasTrabalhadas">00:00</strong></div>
-      <div>KM Rodado: <strong id="diaKM">0</strong></div>
-      <div>Lucro do Dia: <strong id="diaLucro" class="text-success">R$ 0,00</strong></div>
+      <div>Horas Trabalhadas: <strong id="diaHorasTrabalhadas"></strong></div>
+      <div>KM Rodado: <strong id="diaKM"></strong></div>
+      <div>Lucro do Dia: <strong id="diaLucro"></strong></div>
     </div>
 
     <div class="nav">
-      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+      <button onclick="irPara('menu')">⬅️ Menu</button>
     </div>
   </section>
 
-  <!-- ================= MANUTENÇÃO (BASE VISUAL) ================= -->
-  <section id="manutencao" class="tela">
-    <h2>🛠️ Manutenção</h2>
+  <!-- ================= METAS MENSAIS ================= -->
+  <section id="metasMensais" class="tela">
+    <h2>📈 Metas Mensais</h2>
+    <!-- permanece igual ao seu código original -->
+    <div class="nav">
+      <button onclick="irPara('menu')">⬅️ Menu</button>
+    </div>
+  </section>
 
-    <button>📝 Cadastrar Manutenção</button>
-    <button>✅ Validar Manutenção</button>
-    <button>📋 Manutenções Realizadas</button>
+  <!-- ================= HISTÓRICO ================= -->
+  <section id="historicoGeral" class="tela">
+    <h2>📚 Histórico Geral</h2>
+    <ul id="listaHistorico"></ul>
+
+    <button onclick="exportarExcel()">⬇️ Exportar Excel</button>
+    <button onclick="exportarPDF()">⬇️ Exportar PDF</button>
+    <button class="btn-danger" onclick="limparTodoHistorico()">🗑 Apagar Histórico</button>
 
     <div class="nav">
-      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+      <button onclick="irPara('menu')">⬅️ Menu</button>
     </div>
   </section>
 
