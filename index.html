@@ -2,128 +2,71 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Controle Diário V5</title>
-	<link rel="stylesheet" href="visual.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#000000">
+  <title>Controle Diário</title>
 
-  <!-- Links COMPLETOS para as bibliotecas de exportação (CORREÇÃO AQUI) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#121212">
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./visual.css">
+
+  <!-- LIBS EXPORTAÇÃO -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
 </head>
+
 <body>
 
 <div class="app">
+
+  <!-- ================= MENU PRINCIPAL ================= -->
   <section id="menu" class="tela ativa menu">
-    <h2>Menu Principal</h2>
-    <div class="card-menu" onclick="irPara('inicioTurno')">
-  <div class="card-icon">🚗</div>
-  <div class="card-text">
-    <div class="card-title">Gerenciar Turno</div>
-    <div class="card-desc">
-      Inicie, registre custos e finalize seu turno
-    </div>
-  </div>
-</div>
+    <h2>👋 Bem-vindo</h2>
 
-<div class="card-menu" onclick="irPara('custos')">
-  <div class="card-icon">⛽</div>
-  <div class="card-text">
-    <div class="card-title">Custos e Ganhos</div>
-    <div class="card-desc">
-      Abastecimentos, despesas e valor apurado
-    </div>
-  </div>
-</div>
-
-<div class="card-menu" onclick="irPara('fimTurno')">
-  <div class="card-icon">⏹</div>
-  <div class="card-text">
-    <div class="card-title">Finalizar Turno</div>
-    <div class="card-desc">
-      Encerramento do turno e quilometragem final
-    </div>
-  </div>
-</div>
-
-<div class="card-menu" onclick="irPara('resumoDia')">
-  <div class="card-icon">📅</div>
-  <div class="card-text">
-    <div class="card-title">Resumo do Dia</div>
-    <div class="card-desc">
-      Resultados do dia e valor por hora
-    </div>
-  </div>
-</div>
-
-<div class="card-menu" onclick="irPara('metasMensais')">
-  <div class="card-icon">📈</div>
-  <div class="card-text">
-    <div class="card-title">Metas Mensais</div>
-    <div class="card-desc">
-      Acompanhe metas e custos fixos
-    </div>
-  </div>
-</div>
-
-<div class="card-menu" onclick="irPara('historicoGeral')">
-  <div class="card-icon">📚</div>
-  <div class="card-text">
-    <div class="card-title">Histórico Geral</div>
-    <div class="card-desc">
-      Todos os turnos e exportações
-    </div>
-  </div>
-</div>
-  </section>
-
-  <section id="inicioTurno" class="tela">
-  <h2>Início de Turno</h2>
-
-  <div class="card">
-
-    <div class="linha">
-      <label>Hora de início</label>
-      <input
-        id="horaInicio"
-        type="tel"
-        placeholder="Ex: 0620"
-        maxlength="5"
-      >
-    </div>
-
-    <div class="linha">
-      <label>KM inicial</label>
-      <input
-        id="kmInicial"
-        type="number"
-        placeholder="Ex: 28500"
-      >
-    </div>
-
-    <button class="btn btn-primary" onclick="confirmarInicioTurno()">
-      ▶ Iniciar Turno
+    <button onclick="irPara('inicioTurno')">
+      <span class="icone">▶️</span> Gerenciar Turno
     </button>
 
-  </div>
+    <button onclick="irPara('resumoDia')">
+      <span class="icone">📊</span> Resumos, Metas e Histórico
+    </button>
 
-  <div class="nav">
-    <button class="btn" onclick="irPara('menu')">⬅ Voltar</button>
-  </div>
-</section>
+    <button onclick="irPara('manutencao')">
+      <span class="icone">🛠️</span> Manutenção
+    </button>
+  </section>
 
- <section id="custos" class="tela">
-  <h2>Custos e Ganhos</h2>
-
-  <div class="card">
+  <!-- ================= INÍCIO DE TURNO ================= -->
+  <section id="inicioTurno" class="tela">
+    <h2>▶️ Início de Turno</h2>
 
     <div class="linha">
-      <label>Abastecimento (R$)</label>
+      <label>Hora Início</label>
+      <input id="horaInicio" type="tel" placeholder="06:20">
+      <button class="btn-icon" onclick="capturarHora('horaInicio')">⏱️</button>
+    </div>
+
+    <div class="linha">
+      <label>KM Inicial</label>
+      <input id="kmInicial" type="number" placeholder="12500">
+    </div>
+
+    <button class="btn-save" onclick="confirmarInicioTurno()">✅ Iniciar Turno</button>
+
+    <div class="nav">
+      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+    </div>
+  </section>
+
+  <!-- ================= CUSTOS E GANHOS ================= -->
+  <section id="custos" class="tela">
+    <h2>⛽ Custos e Ganhos</h2>
+
+    <div class="linha">
+      <label>Abastecimento R$</label>
       <input id="valorAbastecimento" type="number" step="0.01">
-      <button class="btn-icon" onclick="adicionarAbastecimento()">＋</button>
+      <button class="btn-icon" onclick="adicionarAbastecimento()">➕</button>
     </div>
 
     <div class="linha">
@@ -131,12 +74,10 @@
       <input id="totalAbastecido" class="readonly" readonly>
     </div>
 
-    <hr>
-
     <div class="linha">
-      <label>Outros Custos (R$)</label>
+      <label>Outros Custos R$</label>
       <input id="valorOutrosCustos" type="number" step="0.01">
-      <button class="btn-icon" onclick="adicionarOutrosCustos()">＋</button>
+      <button class="btn-icon" onclick="adicionarOutrosCustos()">➕</button>
     </div>
 
     <div class="linha">
@@ -144,108 +85,76 @@
       <input id="totalOutrosCustos" class="readonly" readonly>
     </div>
 
-    <div class="linha destaque">
-      <label>Total de Custos</label>
+    <div class="linha">
+      <label>Total Custos</label>
       <input id="totalCustos" class="readonly" readonly>
     </div>
 
-    <hr>
-
     <div class="linha">
-      <label>Valor Apurado (R$)</label>
+      <label>Valor Apurado R$</label>
       <input id="apurado" type="number" step="0.01">
     </div>
 
-    <button class="btn btn-primary" onclick="inserirApurado()">
-      💾 Salvar Dados
-    </button>
+    <button class="btn-save" onclick="inserirApurado()">💾 Salvar Dados</button>
 
-  </div>
+    <div class="nav">
+      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+      <button class="btn-secondary" onclick="irPara('fimTurno')">➡️ Finalizar</button>
+    </div>
+  </section>
 
-  <div class="nav">
-    <button class="btn" onclick="irPara('menu')">⬅ Menu</button>
-    <button class="btn btn-primary" onclick="irPara('fimTurno')">Próximo ➡</button>
-  </div>
-</section>
-
+  <!-- ================= FIM DE TURNO ================= -->
   <section id="fimTurno" class="tela">
-    <h2>⏹ Fim de Turno</h2>
-    <div class="linha"><label>Hora Fim</label><input id="horaFim" type="tel" placeholder="HH:MM" maxlength="5"><button onclick="capturarHora('horaFim')">⏱</button></div>
-    <div class="linha"><label>KM Final</label><input id="kmFinal" type="number"></div>
-    <button class="btn-block btn-danger" onclick="confirmarFimTurno()">⏹ Encerrar Turno</button>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
-  </section>
+    <h2>⏹️ Fim de Turno</h2>
 
-  <section id="resumoTurno" class="tela">
-    <h2>📊 Resumo do Turno</h2>
-    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; line-height: 2;">
-      <div>Tempo: <strong id="resumoHoras">-</strong></div>
-      <div>Rodado: <strong id="resumoKM">-</strong></div>
-      <div>Custos: <strong id="resumoCustos">-</strong></div>
-      <div>Lucro: <strong id="resumoLucro" style="color:green">-</strong></div>
-      <div>Valor/Hora: <strong id="resumoValorHora">-</strong></div>
+    <div class="linha">
+      <label>Hora Fim</label>
+      <input id="horaFim" type="tel" placeholder="18:40">
+      <button class="btn-icon" onclick="capturarHora('horaFim')">⏱️</button>
     </div>
-    <button class="btn-block btn-save" style="margin-top:20px" onclick="salvarTurnoNoHistorico()">✅ Arquivar e Limpar para Novo Turno</button>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
+
+    <div class="linha">
+      <label>KM Final</label>
+      <input id="kmFinal" type="number">
+    </div>
+
+    <button class="btn-danger" onclick="confirmarFimTurno()">⏹️ Encerrar Turno</button>
+
+    <div class="nav">
+      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+    </div>
   </section>
 
+  <!-- ================= RESUMO DO DIA ================= -->
   <section id="resumoDia" class="tela">
-    <h2>📅 Resumo do Dia (Hoje)</h2>
-    <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; line-height: 2;">
-      <p>Intervalo Total: <strong id="diaHorasTrabalhadas">00:00h</strong></p>
-      <p>KM Total Rodado: <strong id="diaKM">0 km</strong></p>
-      <p>Total Abastecido: <strong id="diaAbastecido">R$ 0.00</strong></p>
-      <p>Outros Custos: <strong id="diaOutrosCustos">R$ 0.00</strong></p>
-      <p>Valor Apurado: <strong id="diaApurado">R$ 0.00</strong></p>
-      <hr>
-      <p>Lucro do Dia: <strong id="diaLucro" style="color:green; font-size:1.2em;">R$ 0.00</strong></p>
-      <p>Valor Médio da Hora: <strong id="diaValorHora">R$ 0.00/h</strong></p>
+    <h2>📊 Resumo do Dia</h2>
+
+    <div class="box">
+      <div>Horas Trabalhadas: <strong id="diaHorasTrabalhadas">00:00</strong></div>
+      <div>KM Rodado: <strong id="diaKM">0</strong></div>
+      <div>Lucro do Dia: <strong id="diaLucro" class="text-success">R$ 0,00</strong></div>
     </div>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
-  </section>
-  
-  <section id="metasMensais" class="tela">
-    <h2>📈 Metas Mensais</h2>
-    <div style="border: 1px solid #007bff; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-      <div class="linha"><label>Valor da Meta Mensal</label><input id="valorMetaMensal" type="number" step="0.01"><button onclick="atualizarMetaMensal()">💾 Salvar</button></div>
-      <button class="btn-block btn-danger" onclick="apagarMetaMensal()" style="font-size:12px; margin-top:-10px; margin-bottom:15px;">Apagar Meta e Custos Fixos</button>
-      <hr>
-      <div class="linha"><label>Descrição Custo Fixo</label><input id="descricaoCustoFixo" type="text" placeholder="Ex: Parcela Carro"></div>
-      <div class="linha"><label>Valor R$</label><input id="valorCustoFixo" type="number" step="0.01"><button onclick="inserirCustoFixo()">+</button></div>
-      <hr>
-      <strong>Lista de Custos Fixos:</strong>
-      <ul id="listaCustosFixos" style="list-style: none; padding: 0;"></ul>
-      <div class="linha" style="margin-top: 15px;"><label style="font-size: 16px;">Total Custos Fixos</label><input id="totalCustosFixos" class="readonly" type="text" readonly style="font-weight: bold;"></div>
+
+    <div class="nav">
+      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
     </div>
-    <div style="background: #e9ecef; padding: 15px; border-radius: 5px;">
-        <div class="linha"><label>Sua Meta</label><input id="resumoSuaMeta" class="readonly" type="text" readonly></div>
-        <div class="linha"><label>Total Custos Fixos</label><input id="resumoTotalCustosFixos" class="readonly" type="text" readonly></div>
-        <hr>
-        <div class="linha"><label>Lucro do mês</label><input id="resumoLucroDoMes" class="readonly" type="text" readonly></div>
-        <div class="linha"><label style="font-size: 1.1em; font-weight: bold; color: #dc3545;">Falta Para Atingir a Meta</label><input id="resumoFaltaParaMeta" class="readonly" type="text" readonly style="color: #dc3545; font-size: 1.1em; font-weight: bold;"></div>
-    </div>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
   </section>
 
-  <section id="historicoGeral" class="tela">
-    <h2>📚 Histórico Geral</h2>
-    <ul id="listaHistorico" style="list-style: none; padding: 0;"></ul>
-    <button class="btn-block" onclick="exportarExcel()">⬇️ Exportar para Excel/CSV</button>
-    <button class="btn-block" onclick="exportarPDF()">⬇️ Exportar para PDF</button>
-    <button class="btn-block btn-danger" onclick="limparTodoHistorico()" style="font-size:12px">Apagar Todo Histórico</button>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
+  <!-- ================= MANUTENÇÃO (BASE VISUAL) ================= -->
+  <section id="manutencao" class="tela">
+    <h2>🛠️ Manutenção</h2>
+
+    <button>📝 Cadastrar Manutenção</button>
+    <button>✅ Validar Manutenção</button>
+    <button>📋 Manutenções Realizadas</button>
+
+    <div class="nav">
+      <button class="btn-secondary" onclick="irPara('menu')">⬅️ Menu</button>
+    </div>
   </section>
+
 </div>
+
 <script src="./app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
