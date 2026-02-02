@@ -1,35 +1,10 @@
-/* =========================================================
-   ARQUIVO: visual.css
-   PROJETO: Controle Diário (V5+)
-   FINALIDADE: CONTROLE VISUAL GLOBAL DO APP
-   ---------------------------------------------------------
-   IMPORTANTE:
-   - Este arquivo controla APENAS aparência
-   - Nenhuma regra de lógica deve entrar aqui
-   - Usado em TODAS as telas do app
-   - Preparado para modo noturno manual
-   ========================================================= */
+/* ======================================================
+   visual.css
+   Controle Diário - Base Visual V5
+   Foco: Motoristas | Botões grandes | Night friendly
+   ====================================================== */
 
-
-/* =========================
-   VARIÁVEIS VISUAIS GLOBAIS
-   ========================= */
-:root {
-  --bg-app: #0f172a;            /* Fundo geral (noturno confortável) */
-  --bg-card: #111827;           /* Fundo dos cards */
-  --bg-card-light: #1f2933;     /* Cards secundários */
-  --text-main: #f9fafb;         /* Texto principal */
-  --text-muted: #9ca3af;        /* Texto auxiliar */
-  --primary: #22c55e;           /* Verde principal */
-  --danger: #ef4444;            /* Vermelho alerta */
-  --border-soft: rgba(255,255,255,0.08);
-  --radius: 18px;
-}
-
-
-/* =========================
-   RESET BÁSICO
-   ========================= */
+/* RESET BÁSICO */
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -37,36 +12,30 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-app);
-  color: var(--text-main);
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #121212;
+  color: #f1f1f1;
 }
 
-
-/* =========================
-   CONTAINER PRINCIPAL DO APP
-   ========================= */
+/* CONTAINER DO APP */
 .app {
   max-width: 480px;
   margin: 0 auto;
   min-height: 100vh;
-  padding: 20px 16px 32px;
+  padding: 20px;
+  background: #1c1c1c;
 }
 
-
-/* =========================
-   TÍTULOS
-   ========================= */
-h1, h2 {
+/* TÍTULOS */
+h2 {
   text-align: center;
-  font-weight: 700;
-  margin: 10px 0 20px;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #ffffff;
 }
 
-
-/* =========================
-   TELAS (controle de navegação)
-   ========================= */
+/* CONTROLE DE TELAS */
 .tela {
   display: none;
 }
@@ -75,177 +44,156 @@ h1, h2 {
   display: block;
 }
 
-
 /* =========================
-   CARDS (PADRÃO PRINCIPAL)
+   BOTÕES (PADRÃO GERAL)
    ========================= */
-.card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 22px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
-  border: 1px solid var(--border-soft);
-}
-
-
-/* =========================
-   BOTÕES (GRANDES – MOTORISTA)
-   ========================= */
-.btn {
+button {
   width: 100%;
   padding: 18px;
-  border-radius: 16px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
   margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  background: #2a2a2a;
+  color: #ffffff;
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: #022c22;
+button:active {
+  opacity: 0.85;
+}
+
+/* VARIAÇÕES DE BOTÕES */
+.btn-save {
+  background: #2e7d32;
 }
 
 .btn-danger {
-  background: var(--danger);
-  color: #fff;
+  background: #c62828;
 }
 
-.btn:active {
-  transform: scale(0.98);
+.btn-secondary {
+  background: #424242;
 }
-
 
 /* =========================
-   INPUTS (ALTOS E LEGÍVEIS)
+   MENU PRINCIPAL (CARDS)
    ========================= */
-input {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  border-radius: 14px;
-  border: 1px solid var(--border-soft);
-  background: var(--bg-card-light);
-  color: var(--text-main);
-  margin-top: 6px;
+.menu button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  font-size: 22px;
+  padding: 22px;
 }
 
-input::placeholder {
-  color: var(--text-muted);
+.menu button span.icone {
+  font-size: 32px;
 }
-
-input:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
 
 /* =========================
    LINHAS DE FORMULÁRIO
    ========================= */
 .linha {
+  display: flex;
+  gap: 12px;
   margin-bottom: 18px;
+  align-items: center;
 }
 
+/* LABELS */
 label {
-  font-size: 15px;
-  color: var(--text-muted);
+  flex: 1;
+  font-size: 18px;
+  font-weight: bold;
 }
 
+/* INPUTS */
+input {
+  flex: 1;
+  padding: 16px;
+  font-size: 20px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: #2b2b2b;
+  color: #ffffff;
+}
 
-/* =========================
-   CAMPOS SOMENTE LEITURA
-   ========================= */
+input::placeholder {
+  color: #aaaaaa;
+}
+
+/* INPUT SOMENTE LEITURA */
 .readonly {
-  background: #020617;
-  color: var(--text-muted);
+  background: #3a3a3a;
+  color: #dddddd;
 }
 
+/* =========================
+   BLOCOS DE INFORMAÇÃO
+   ========================= */
+.box {
+  background: #242424;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+/* DESTAQUES */
+.text-success {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.text-danger {
+  color: #ef5350;
+  font-weight: bold;
+}
 
 /* =========================
-   RODAPÉ / NAVEGAÇÃO
+   LISTAS
+   ========================= */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: #2a2a2a;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* =========================
+   NAVEGAÇÃO INFERIOR
    ========================= */
 .nav {
   margin-top: 25px;
   display: flex;
-  justify-content: space-between;
   gap: 12px;
 }
 
-.nav .btn {
-  font-size: 16px;
-  padding: 14px;
-}
-
-/* ===== MENU PRINCIPAL ===== */
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.menu-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 18px;
-
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.menu-card:active {
-  transform: scale(0.98);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.menu-icon {
-  font-size: 36px; /* emoji grande */
-}
-
-.menu-text h3 {
-  font-size: 20px;
-  margin: 0;
-}
-
-.menu-text p {
-  font-size: 15px;
-  margin: 4px 0 0;
-  opacity: 0.85;
-}
-
-button,
-.btn-primary {
-  width: 100%;
-  min-height: 56px;
-
+.nav button {
+  flex: 1;
   font-size: 18px;
-  font-weight: 600;
-
-  border-radius: 14px;
-  border: none;
-
-  background: #2563eb;
-  color: #fff;
-
-  cursor: pointer;
+  padding: 16px;
 }
 
-button:active {
-  transform: scale(0.97);
+/* =========================
+   BOTÕES PEQUENOS (ÍCONES)
+   ========================= */
+.btn-icon {
+  width: auto;
+  padding: 14px;
+  font-size: 22px;
+  border-radius: 12px;
+  background: #424242;
 }
-
-
-/* =========================================================
-   FIM DO ARQUIVO visual.css
-   ========================================================= */
