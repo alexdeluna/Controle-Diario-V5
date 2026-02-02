@@ -229,19 +229,39 @@ section > div {
   </section>
 
   <section id="inicioTurno" class="tela">
-    <h2>Início de Turno</h2>
+  <h2>Início de Turno</h2>
+
+  <div class="card">
+
     <div class="linha">
-      <label>Hora Início</label>
-      <input id="horaInicio" type="tel" placeholder="Ex: 0620" maxlength="5">
-      <button onclick="capturarHora('horaInicio')">⏱</button>
+      <label>Hora de início</label>
+      <input
+        id="horaInicio"
+        type="tel"
+        placeholder="Ex: 0620"
+        maxlength="5"
+      >
     </div>
+
     <div class="linha">
-      <label>KM Inicial</label>
-      <input id="kmInicial" type="number" placeholder="Ex: 12500">
+      <label>KM inicial</label>
+      <input
+        id="kmInicial"
+        type="number"
+        placeholder="Ex: 28500"
+      >
     </div>
-    <button class="btn-block btn-save" onclick="confirmarInicioTurno()">✅ Iniciar Agora</button>
-    <div class="nav"><button onclick="irPara('menu')">⬅ Menu</button></div>
-  </section>
+
+    <button class="btn btn-primary" onclick="confirmarInicioTurno()">
+      ▶ Iniciar Turno
+    </button>
+
+  </div>
+
+  <div class="nav">
+    <button class="btn" onclick="irPara('menu')">⬅ Voltar</button>
+  </div>
+</section>
 
   <section id="custos" class="tela">
     <h2>⛽ Custos e Ganhos</h2>
@@ -328,6 +348,7 @@ section > div {
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
