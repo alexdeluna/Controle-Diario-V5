@@ -211,3 +211,35 @@ li {
   font-size: 26px;
   border-radius: 12px;
 }
+
+/* ===== LINHAS COM INPUT + BOTÃO (+) ===== */
+
+/* Evita estouro lateral */
+.linha {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Label ocupa linha inteira quando necessário */
+.linha label {
+  min-width: 120px;
+  font-size: 18px;
+}
+
+/* Inputs grandes, mas controlados */
+.linha input[type="number"],
+.linha input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  font-size: 20px;
+}
+
+/* Botões de ação (+, 💾, etc) */
+.linha button {
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
