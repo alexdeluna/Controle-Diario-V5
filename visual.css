@@ -287,3 +287,44 @@ li {
 .readonly {
   opacity: 0.7;
 }
+
+/* ===== BLOCO CUSTOS E GANHOS (INPUTS GRANDES) ===== */
+
+.bloco-custo {
+  margin-bottom: 30px;
+}
+
+.label-grande {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-grande {
+  width: 100%;
+  height: 64px;            /* 👈 ALTURA GRANDE */
+  font-size: 1.4rem;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: #2b2b2b;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.input-grande::placeholder {
+  color: #aaa;
+}
+
+.btn-confirmar {
+  width: 100%;
+  height: 60px;
+  margin-top: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 14px;
+  border: none;
+  background: #2f8f46;
+  color: #fff;
+}
