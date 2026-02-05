@@ -98,9 +98,9 @@ button:active {
    ========================= */
 .linha {
   display: flex;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 /* LABELS */
@@ -196,4 +196,18 @@ li {
   font-size: 22px;
   border-radius: 12px;
   background: #424242;
+}
+
+/* Ajuste específico para campo de hora + botão relógio */
+.linha input[type="tel"] {
+  flex: 1;
+  min-width: 0;
+}
+
+.linha button {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  border-radius: 12px;
 }
