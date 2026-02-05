@@ -117,8 +117,11 @@ function confirmarFimTurno() {
 
 function salvarTurnoNoHistorico() {
   if (estado.turnoAtual && estado.turnoAtual.horaFim) {
-    estado.turnos.push({...estado.turnoAtual});
-    estado.turnoAtual = null; salvar(); alert('Turno arquivado!'); window.location.reload();
+    estado.turnos.push({ ...estado.turnoAtual });
+    estado.turnoAtual = null;
+    salvar();
+    alert('Turno arquivado!');
+    irPara('menu'); // volta corretamente para o menu
   }
 }
 
@@ -296,5 +299,6 @@ function exportarPDF() {
 }
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
 
 
