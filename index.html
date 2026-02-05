@@ -75,22 +75,48 @@
   <section id="custos" class="tela">
     <h2>⛽ Custos e Ganhos</h2>
 
-    <div class="linha">
-      <label>Abastecimento R$</label>
-      <input id="valorAbastecimento" type="number" step="0.01">
-      <button class="btn-icon" onclick="adicionarAbastecimento()">➕</button>
-    </div>
+   <div class="bloco-custo">
+  <label class="label-grande">⛽ Custos com Combustível</label>
+
+  <input 
+    id="valorAbastecimento"
+    type="number"
+    step="0.01"
+    placeholder="Digite o valor abastecido"
+    class="input-grande"
+  >
+
+  <button 
+    class="btn-confirmar"
+    onclick="adicionarAbastecimento()"
+  >
+    ✅ Confirmar Combustível
+  </button>
+</div>
 
     <div class="linha">
       <label>Total Abastecido</label>
       <input id="totalAbastecido" class="readonly" readonly>
     </div>
 
-    <div class="linha">
-      <label>Outros Custos R$</label>
-      <input id="valorOutrosCustos" type="number" step="0.01">
-      <button class="btn-icon" onclick="adicionarOutrosCustos()">➕</button>
-    </div>
+   <div class="bloco-custo">
+  <label class="label-grande">🧾 Outros Custos</label>
+
+  <input 
+    id="valorOutrosCustos"
+    type="number"
+    step="0.01"
+    placeholder="Digite o valor do custo"
+    class="input-grande"
+  >
+
+  <button 
+    class="btn-confirmar"
+    onclick="adicionarOutrosCustos()"
+  >
+    ✅ Confirmar Outros Custos
+  </button>
+</div>
 
     <div class="linha">
       <label>Total Outros</label>
@@ -180,3 +206,4 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
