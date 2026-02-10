@@ -112,7 +112,7 @@ function confirmarFimTurno() {
   
   estado.turnoAtual.horaFim = inputHora.value;
   estado.turnoAtual.kmFinal = km;
-  salvar(); irPara('resumoTurno');
+  salvar(); irPara('menu');
 }
 
 function salvarTurnoNoHistorico() {
@@ -299,6 +299,7 @@ function exportarPDF() {
 }
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
 
 
 
