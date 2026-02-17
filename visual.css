@@ -415,3 +415,70 @@ li {
   font-size: 18px;
 }
 
+/* Estilos para o Menu Principal */
+.header-menu {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px 0;
+}
+
+.header-menu h1 {
+  font-size: 28px;
+  margin: 0;
+  color: #fff;
+}
+
+.header-menu p {
+  color: #aaa;
+  margin-top: 5px;
+}
+
+.grid-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Botão Estilo Card para o Menu */
+.btn-menu {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 20px;
+  background: #2a2a2a;
+  border-radius: 20px;
+  border: 1px solid #333;
+  transition: transform 0.1s;
+}
+
+.btn-menu:active {
+  transform: scale(0.98);
+  background: #333;
+}
+
+.icone-g {
+  font-size: 40px;
+  margin-right: 20px;
+}
+
+.texto-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-menu strong {
+  font-size: 20px;
+  color: #fff;
+}
+
+.texto-menu span {
+  font-size: 14px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.footer-status {
+  text-align: center;
+  margin-top: 40px;
+  color: #444;
+}
