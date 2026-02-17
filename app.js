@@ -26,29 +26,55 @@ function diffHoras(h1, h2) {
   return fim - inicio; 
 }
 
-// Função que aplica a máscara em tempo real
+// 1. MÁSCARA EM TEMPO REAL (CORRIGIDA)
 function mascaraHora(input) {
-  let v = input.value.replace(/\D/g, ""); // Remove tudo que não é número
-  if (v.length > 4) v = v.slice(0, 4);    // Limita a 4 dígitos
-
+  let v = input.value.replace(/\D/g, ""); 
+  if (v.length > 4) v = v.slice(0, 4);    
   if (v.length >= 3) {
     v = v.substring(0, 2) + ":" + v.substring(2, 4);
   }
   input.value = v;
 }
 
-// Configura os ouvintes nos campos de hora assim que a página carrega
+// 2. FUNÇÃO DE INÍCIO DE TURNO (REVISADA)
+function confirmarInicioTurno() {
+  const inputHora = document.getElementById('horaInicio');
+  const valorHora = inputHora.value; // Já está com a máscara 00:00
+  const km = Number(document.getElementById('kmInicial').value);
+
+  // Validação simples: se tem 5 caracteres (00:00) e o KM é válido
+  if (valorHora.length !== 5 || isNaN(km) || km <= 0) { 
+    alert('Por favor, preencha a Hora (00:00) e o KM Inicial corretamente!'); 
+    return; 
+  }
+  
+  // Cria o turno
+  estado.turnoAtual = {
+    data: new Date().toISOString().split('T')[0],
+    horaInicio: valorHora, 
+    kmInicial: km, 
+    horaFim: '', 
+    kmFinal: 0,
+    custos: { abastecimento: 0, outros: 0 }, 
+    apurado: 0
+  };
+
+  salvar(); 
+  sincronizarInterface(); // Garante o status "Online"
+  irPara('menu');
+  
+  // Limpa os campos para o próximo uso
+  inputHora.value = '';
+  document.getElementById('kmInicial').value = '';
+}
+
+// 3. OUvinte para aplicar a máscara (Mantenha este bloco)
 window.addEventListener('DOMContentLoaded', () => {
   const camposHora = ['horaInicio', 'horaFim'];
   camposHora.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
-      // Aplica a máscara enquanto digita
       el.addEventListener('input', (e) => mascaraHora(e.target));
-      
-      // Força o teclado numérico no mobile
-      el.setAttribute('inputmode', 'numeric');
-      el.setAttribute('type', 'tel'); // 'tel' é melhor que 'number' para máscaras com ':'
     }
   });
 });
@@ -427,6 +453,7 @@ window.onload = () => {
     document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-BR');
   sincronizarInterface();
 };
+
 
 
 
