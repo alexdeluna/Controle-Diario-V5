@@ -482,3 +482,36 @@ li {
   margin-top: 40px;
   color: #444;
 }
+
+/* Remove setas de inputs numéricos (Chrome/Safari/Edge/Firefox) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Feedback de Campo Desabilitado (Trava de Segurança) */
+button:disabled {
+  opacity: 0.4;
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
+
+/* Estilo para o Aviso de Salvamento (Floating Toast) */
+.toast-aviso {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2ecc71;
+  color: #000;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: none;
+}
