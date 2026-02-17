@@ -108,12 +108,27 @@ function confirmarFimTurno() {
   const inputHora = document.getElementById('horaFim');
   inputHora.value = tratarEntradaHora(inputHora.value);
   const km = Number(document.getElementById('kmFinal').value);
-  if (!estado.turnoAtual || !validarHora(inputHora.value) || km <= estado.turnoAtual.kmInicial) { alert('Verifique Hora e KM Final!'); return; }
+
+  if (!estado.turnoAtual || !validarHora(inputHora.value) || km <= estado.turnoAtual.kmInicial) { 
+    alert('Verifique Hora e KM Final!'); 
+    return; 
+  }
   
+  // 1. Grava os dados finais
   estado.turnoAtual.horaFim = inputHora.value;
   estado.turnoAtual.kmFinal = km;
-  salvar(); irPara('menu');
+
+  // 2. Move para o histórico (IMPORTANTE)
+  estado.turnos.push({ ...estado.turnoAtual });
+  
+  // 3. Limpa o turno atual para o próximo dia
+  estado.turnoAtual = null;
+  
+  salvar();
+  alert('Turno Finalizado e Arquivado!');
+  irPara('resumoDia'); // Vai direto para o resumo ver os cálculos
 }
+
 
 function salvarTurnoNoHistorico() {
   if (estado.turnoAtual && estado.turnoAtual.horaFim) {
@@ -300,6 +315,7 @@ function exportarPDF() {
 }
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
 
 
 
