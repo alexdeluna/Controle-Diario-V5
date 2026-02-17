@@ -49,15 +49,19 @@
     </button>
   </section>
 
-  <!-- ================= INÍCIO DE TURNO ================= -->
+    <!-- ================= INÍCIO DE TURNO ================= -->
   <section id="inicioTurno" class="tela">
     <h2>▶️ Início de Turno</h2>
 
     <div class="linha">
       <label>Hora Início</label>
-      <input id="horaInicio" type="tel" placeholder="06:20">
-      <button class="btn-icon" onclick="capturarHora('horaInicio')">⏱️</button>
+      <input id="horaInicio" type="tel" placeholder="00:00">
     </div>
+    
+    <!-- Botão Capturar (Novo Padrão) -->
+    <button class="btn-confirmar" onclick="capturarHora('horaInicio')" style="margin-top: 5px; margin-bottom: 25px;">
+      ⏱️ Capturar hora atual
+    </button>
 
     <div class="linha">
       <label>KM Inicial</label>
@@ -141,15 +145,19 @@
     </div>
   </section>
 
-  <!-- ================= FIM DE TURNO ================= -->
+    <!-- ================= FIM DE TURNO ================= -->
   <section id="fimTurno" class="tela">
     <h2>⏹ Finalizar Turno</h2>
 
     <div class="linha">
       <label>Hora Fim</label>
-      <input id="horaFim" type="tel">
-      <button class="btn-icon" onclick="capturarHora('horaFim')">⏱️</button>
+      <input id="horaFim" type="tel" placeholder="00:00">
     </div>
+
+    <!-- Botão Capturar (Novo Padrão) -->
+    <button class="btn-confirmar" onclick="capturarHora('horaFim')" style="margin-top: 5px; margin-bottom: 25px;">
+      ⏱️ Capturar hora atual
+    </button>
 
     <div class="linha">
       <label>KM Final</label>
@@ -263,5 +271,6 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
