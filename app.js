@@ -327,6 +327,78 @@ function mostrarAvisoSalvo() {
   }, 2000); // O aviso some após 2 segundos
 }
 
+/**********************************************
+ * FUNÇÃO DE SINCRONIZAÇÃO (CORAÇÃO DO APP)
+ * Esta função garante que a tela mostre o que está salvo
+ **********************************************/
+function sincronizarInterface() {
+  const t = estado.turnoAtual;
+  const estaAtivo = t !== null;
+
+  // 1. Atualiza Status do Menu
+  const statusBadge = document.getElementById('statusTrabalho');
+  if (statusBadge) {
+    statusBadge.innerText = estaAtivo ? "🟢 Em Turno" : "🔴 Off-line";
+    statusBadge.style.color = estaAtivo ? "#2ecc71" : "#e74c3c";
+  }
+
+  // 2. Trava/Destrava Botões do Menu
+  document.getElementById('btnIrInicio').disabled = estaAtivo;
+  document.getElementById('btnIrCustos').disabled = !estaAtivo;
+  document.getElementById('btnIrFim').disabled = !estaAtivo;
+
+  // 3. Se houver turno ativo, preenche os campos automaticamente
+  if (estaAtivo) {
+    if(document.getElementById('totalAbastecido')) 
+      document.getElementById('totalAbastecido').value = t.custos.abastecimento.toFixed(2);
+    if(document.getElementById('totalOutrosCustos')) 
+      document.getElementById('totalOutrosCustos').value = t.custos.outros.toFixed(2);
+    if(document.getElementById('totalCustos')) 
+      document.getElementById('totalCustos').value = (t.custos.abastecimento + t.custos.outros).toFixed(2);
+  }
+}
+
+/**********************************************
+ * VALIDAÇÕES DE SEGURANÇA
+ **********************************************/
+function confirmarFimTurno() {
+  const inputHora = document.getElementById('horaFim');
+  inputHora.value = tratarEntradaHora(inputHora.value);
+  const kmF = Number(document.getElementById('kmFinal').value);
+  const valorApurado = Number(document.getElementById('apurado').value);
+
+  // Bloqueia erro de KM menor que o inicial
+  if (kmF <= estado.turnoAtual.kmInicial) {
+    alert(`Erro: KM Final (${kmF}) não pode ser menor ou igual ao Inicial (${estado.turnoAtual.kmInicial})!`);
+    return;
+  }
+
+  if (!validarHora(inputHora.value)) {
+    alert("Hora inválida!");
+    return;
+  }
+
+  // Gravação Final
+  estado.turnoAtual.horaFim = inputHora.value;
+  estado.turnoAtual.kmFinal = kmF;
+  estado.turnoAtual.apurado = valorApurado || 0;
+
+  estado.turnos.push({ ...estado.turnoAtual });
+  estado.turnoAtual = null;
+  
+  salvar();
+  sincronizarInterface(); // Atualiza o menu após encerrar
+  alert('Turno Arquivado!');
+  irPara('resumoDia');
+}
+
+// Inicialização ao abrir o app
+window.onload = () => {
+  if(document.getElementById('dataAtual')) 
+    document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-BR');
+  sincronizarInterface();
+};
+
 
 
 
