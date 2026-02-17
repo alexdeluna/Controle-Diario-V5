@@ -36,17 +36,7 @@ function mascaraHora(input) {
   input.value = v;
 }
 
-// 2. FUNÇÃO DE INÍCIO DE TURNO (REVISADA)
-function confirmarInicioTurno() {
-  const inputHora = document.getElementById('horaInicio');
-  const valorHora = inputHora.value; // Já está com a máscara 00:00
-  const km = Number(document.getElementById('kmInicial').value);
 
-  // Validação simples: se tem 5 caracteres (00:00) e o KM é válido
-  if (valorHora.length !== 5 || isNaN(km) || km <= 0) { 
-    alert('Por favor, preencha a Hora (00:00) e o KM Inicial corretamente!'); 
-    return; 
-  }
   
   // Cria o turno
   estado.turnoAtual = {
@@ -79,15 +69,57 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/*function tratarEntradaHora(valor) {
-  let num = valor.replace(/\D/g, '');
-  if (num.length === 3) num = '0' + num;
-  if (num.length === 4) {
-    const hh = num.substring(0, 2); const mm = num.substring(2, 4);
-    if (parseInt(hh) < 24 && parseInt(mm) < 60) return `${hh}:${mm}`;
+// 1. MÁSCARA EM TEMPO REAL
+function mascaraHora(input) {
+  let v = input.value.replace(/\D/g, ""); 
+  if (v.length > 4) v = v.slice(0, 4);    
+  if (v.length >= 3) {
+    v = v.substring(0, 2) + ":" + v.substring(2, 4);
   }
-  return valor; 
-}*/
+  input.value = v;
+}
+
+// 2. FUNÇÃO DE INÍCIO DE TURNO (VERSÃO ÚNICA E CORRIGIDA)
+function confirmarInicioTurno() {
+  const inputHora = document.getElementById('horaInicio');
+  const valorHora = inputHora.value; 
+  const km = Number(document.getElementById('kmInicial').value);
+
+  // Valida se a hora tem o formato 00:00 usando a regex que você já tem
+  if (!validarHora(valorHora) || isNaN(km) || km <= 0) { 
+    alert('Verifique a Hora (00:00) e o KM Inicial!'); 
+    return; 
+  }
+  
+  estado.turnoAtual = {
+    data: new Date().toISOString().split('T')[0],
+    horaInicio: valorHora, 
+    kmInicial: km, 
+    horaFim: '', 
+    kmFinal: 0,
+    custos: { abastecimento: 0, outros: 0 }, 
+    apurado: 0
+  };
+
+  salvar(); 
+  sincronizarInterface(); 
+  irPara('menu');
+  
+  // Limpa campos para evitar lixo no próximo turno
+  inputHora.value = '';
+  document.getElementById('kmInicial').value = '';
+}
+
+// 3. CONFIGURAÇÃO DOS EVENTOS (Coloque isso no final do app.js ou dentro do window.onload)
+window.addEventListener('DOMContentLoaded', () => {
+  const camposHora = ['horaInicio', 'horaFim'];
+  camposHora.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', (e) => mascaraHora(e.target));
+    }
+  });
+});
 
 function validarHora(hora) { return /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/.test(hora); }
 
@@ -111,21 +143,7 @@ function capturarHora(id) {
 /******************************
  * FLUXO DO TURNO
  ******************************/
-function confirmarInicioTurno() {
-  const inputHora = document.getElementById('horaInicio');
-  inputHora.value = tratarEntradaHora(inputHora.value);
-  const km = Number(document.getElementById('kmInicial').value);
-  if (!validarHora(inputHora.value) || isNaN(km) || km <= 0) { alert('Verifique Hora e KM!'); return; }
-  
-  estado.turnoAtual = {
-    data: new Date().toISOString().split('T')[0],
-    horaInicio: inputHora.value, kmInicial: km, horaFim: '', kmFinal: 0,
-    custos: { abastecimento: 0, outros: 0 }, apurado: 0
-  };
-  salvar();
-  sincronizarInterface();
-  irPara('menu');
-}
+
 
 function adicionarAbastecimento() {
   const v = Number(document.getElementById('valorAbastecimento').value);
@@ -453,6 +471,7 @@ window.onload = () => {
     document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-BR');
   sincronizarInterface();
 };
+
 
 
 
