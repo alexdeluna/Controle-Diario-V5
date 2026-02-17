@@ -21,6 +21,8 @@
 <div class="app">
 
   <!-- ================= MENU PRINCIPAL ================= -->
+  
+  <!--
   <section id="menu" class="tela ativa menu">
     <h2>👋 Bem-vindo</h2>
 
@@ -48,6 +50,50 @@
       <span class="icone">📚</span> Histórico Geral
     </button>
   </section>
+-->
+  <section id="menu" class="tela ativa">
+  <div class="header-menu">
+    <h1>🚗 Controle Diário</h1>
+    <p id="dataAtual">--/--/----</p>
+    <div id="statusTrabalho" class="status-badge">Off-line</div>
+  </div>
+
+  <div class="grid-menu">
+    <!-- Só permite iniciar se NÃO houver turno ativo -->
+    <button id="btnIrInicio" class="btn-menu btn-save" onclick="irPara('inicioTurno')">
+      <span class="icone-g">▶️</span>
+      <div class="texto-menu"><strong>Iniciar Turno</strong><span>Começar o dia</span></div>
+    </button>
+
+    <!-- Só permite custos/fim se HOUVER turno ativo -->
+    <button id="btnIrCustos" class="btn-menu" onclick="irPara('custos')" disabled>
+      <span class="icone-g">⛽</span>
+      <div class="texto-menu"><strong>Custos e Ganhos</strong><span>Lançar valores</span></div>
+    </button>
+
+    <button id="btnIrFim" class="btn-menu" onclick="irPara('fimTurno')" disabled>
+      <span class="icone-g">⏹</span>
+      <div class="texto-menu"><strong>Finalizar Turno</strong><span>Encerrar o dia</span></div>
+    </button>
+
+    <hr style="border:0; border-top:1px solid #333; margin:10px 0;">
+
+    <button class="btn-menu" onclick="irPara('resumoDia')">
+      <span class="icone-g">📅</span>
+      <div class="texto-menu"><strong>Resumo do Dia</strong><span>Ganhos de hoje</span></div>
+    </button>
+
+    <button class="btn-menu" onclick="irPara('metasMensais')">
+      <span class="icone-g">📈</span>
+      <div class="texto-menu"><strong>Metas Mensais</strong><span>Custos Fixos</span></div>
+    </button>
+
+    <button class="btn-menu" onclick="irPara('historicoGeral')">
+      <span class="icone-g">📚</span>
+      <div class="texto-menu"><strong>Histórico</strong><span>Relatórios</span></div>
+    </button>
+  </div>
+</section>
 
 
     <!-- ================= INÍCIO DE TURNO ================= -->
@@ -264,6 +310,7 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
