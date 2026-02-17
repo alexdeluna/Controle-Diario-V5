@@ -186,28 +186,29 @@
     </div>
   </section>
 
-  <!-- ================= METAS MENSAIS (BOTOES PADRONIZADOS) ================= -->
+ <!-- ================= METAS MENSAIS (REVISÃO TOTAL) ================= -->
 <section id="metasMensais" class="tela">
   <h2>📈 Metas Mensais</h2>
 
+  <!-- Bloco 1: Meta Principal -->
   <div class="box">
     <div class="linha">
       <label>Valor da Meta Mensal</label>
       <input id="valorMetaMensal" type="number" step="0.01" placeholder="Ex: 5000.00">
     </div>
     
-    <!-- Botão Salvar Meta - Padrão Grande -->
-    <button class="btn-save" onclick="atualizarMetaMensal()" style="margin-top: 10px;">
+    <button class="btn-save" onclick="atualizarMetaMensal()">
       💾 Salvar Meta
     </button>
     
-    <button class="btn-danger" onclick="apagarMetaMensal()" style="font-size: 14px; height: 45px; margin-top: 10px;">
-      🗑️ Apagar Tudo (Meta e Fixos)
+    <button class="btn-danger" onclick="apagarMetaMensal()" style="height: 45px; font-size: 14px; margin-top: 10px;">
+      🗑️ Limpar Tudo (Meta e Fixos)
     </button>
   </div>
 
+  <!-- Bloco 2: Cadastro de Custos Fixos -->
   <div class="box">
-    <h3>📌 Custos Fixos</h3>
+    <h3>📌 Novo Custo Fixo</h3>
     
     <div class="linha">
       <label>Descrição do Custo</label>
@@ -219,31 +220,19 @@
       <input id="valorCustoFixo" type="number" step="0.01">
     </div>
 
-    <!-- Botão Adicionar Custo - Padrão Grande -->
-    <button class="btn-confirmar" onclick="inserirCustoFixo()" style="margin-top: 10px; background: #2ecc71; color: #000;">
+    <button class="btn-confirmar" onclick="inserirCustoFixo()">
       ➕ Adicionar Custo
     </button>
 
     <hr style="border: 0; border-top: 1px solid #444; margin: 25px 0;">
     
     <strong>Lista de Custos Fixos:</strong>
-    <ul id="listaCustosFixos"></ul>
+    <!-- A lista agora será estilizada via CSS para evitar confusão -->
+    <ul id="listaCustosFixos" class="lista-limpa"></ul>
 
-    <div class="linha">
+    <div class="linha" style="margin-top: 20px;">
       <label>Total Custos Fixos</label>
       <input id="totalCustosFixos" class="readonly" type="text" readonly>
-    </div>
-  </div>
-
-  <!-- Bloco de Resumo (Opcional, se quiser manter os campos de leitura) -->
-  <div class="box">
-    <div class="linha">
-      <label>Lucro Acumulado</label>
-      <input id="resumoLucroDoMes" class="readonly text-success" type="text" readonly>
-    </div>
-    <div class="linha">
-      <label class="text-danger">Falta Para a Meta</label>
-      <input id="resumoFaltaParaMeta" class="readonly text-danger" type="text" readonly style="font-weight: bold;">
     </div>
   </div>
 
@@ -271,6 +260,7 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
