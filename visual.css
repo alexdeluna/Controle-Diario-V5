@@ -371,3 +371,47 @@ li {
   background: #2f8f46;
   color: #fff;
 }
+
+/* Estilo para a lista de custos fixos */
+.lista-limpa li {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid #ef5350; /* Uma linha vermelha discreta */
+}
+
+.lista-limpa .info-custo {
+  display: flex;
+  flex-direction: column; /* Nome em cima, valor embaixo */
+  gap: 4px;
+}
+
+.lista-limpa .nome-item {
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+.lista-limpa .valor-item {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Botão Lixeira - Pequeno e no canto */
+.btn-deletar {
+  background: #c62828;
+  width: 45px !important; /* Força largura pequena */
+  height: 45px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
