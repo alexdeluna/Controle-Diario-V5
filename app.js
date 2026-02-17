@@ -26,7 +26,34 @@ function diffHoras(h1, h2) {
   return fim - inicio; 
 }
 
-function tratarEntradaHora(valor) {
+// Função que aplica a máscara em tempo real
+function mascaraHora(input) {
+  let v = input.value.replace(/\D/g, ""); // Remove tudo que não é número
+  if (v.length > 4) v = v.slice(0, 4);    // Limita a 4 dígitos
+
+  if (v.length >= 3) {
+    v = v.substring(0, 2) + ":" + v.substring(2, 4);
+  }
+  input.value = v;
+}
+
+// Configura os ouvintes nos campos de hora assim que a página carrega
+window.addEventListener('DOMContentLoaded', () => {
+  const camposHora = ['horaInicio', 'horaFim'];
+  camposHora.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      // Aplica a máscara enquanto digita
+      el.addEventListener('input', (e) => mascaraHora(e.target));
+      
+      // Força o teclado numérico no mobile
+      el.setAttribute('inputmode', 'numeric');
+      el.setAttribute('type', 'tel'); // 'tel' é melhor que 'number' para máscaras com ':'
+    }
+  });
+});
+
+/*function tratarEntradaHora(valor) {
   let num = valor.replace(/\D/g, '');
   if (num.length === 3) num = '0' + num;
   if (num.length === 4) {
@@ -34,7 +61,7 @@ function tratarEntradaHora(valor) {
     if (parseInt(hh) < 24 && parseInt(mm) < 60) return `${hh}:${mm}`;
   }
   return valor; 
-}
+}*/
 
 function validarHora(hora) { return /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/.test(hora); }
 
@@ -400,6 +427,7 @@ window.onload = () => {
     document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-BR');
   sincronizarInterface();
 };
+
 
 
 
