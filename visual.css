@@ -157,6 +157,48 @@ input::placeholder {
   font-weight: bold;
 }
 
+.card-historico {
+  position: relative;
+  border: 1px solid #333;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  background: #242424; /* Fundo escuro igual ao restante */
+  font-size: 16px;
+  color: #f1f1f1;
+}
+
+.card-historico strong {
+  color: #4caf50; /* Lucro em verde */
+}
+
+.btn-deletar-turno {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ef5350;
+  background: none;
+  border: none;
+  font-size: 24px;
+  width: auto; /* Para não ocupar a tela toda como o botão padrão */
+  margin: 0;
+  padding: 5px;
+}
+
+.box div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+
+.box div:last-child {
+  border-bottom: none;
+}
+
+
+
 /* =========================
    LISTAS
    ========================= */
