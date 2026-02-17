@@ -170,6 +170,7 @@ function renderizarListaCustosFixos() {
   estado.metas.compromissos.forEach((c, index) => {
     total += c.valor;
     const li = document.createElement('li');
+    li.className = "card-historico";
     li.style = "display:flex; flex-direction:column; gap:5px; margin-bottom:10px; padding:8px; border:1px solid #ccc; border-radius:5px; background:#fafafa;";
     li.innerHTML = `
   <div style="display:flex; align-items:center; gap:6px; width:100%;">
@@ -273,7 +274,7 @@ function deletarTurno(index) { if (confirm('Excluir turno?')) { estado.turnos.sp
 function limparTodoHistorico() { if (confirm('Apagar tudo?')) { estado.turnos = []; salvar(); carregarHistoricoGeral(); } }
 
 function exportarExcel() {
-  let csv = "Data;Turno;Horas;KM;Gas;Outros;Apurado;Lucro;Vh\n";
+  let csv = "\ufeffData;Turno;Horas;KM;Gas;Outros;Apurado;Lucro;Vh\n";
   estado.turnos.forEach((t, i) => {
     const min = diffHoras(t.horaInicio, t.horaFim);
     const lucro = t.apurado - (t.custos.abastecimento + t.custos.outros);
@@ -287,7 +288,7 @@ function exportarExcel() {
 function exportarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF('landscape');
-  const col = ["Data", "Horas", "KM", "Gas", "Outros", "Apurado", "Lucro", "V/h"];
+  const col = ["Data", "Turno", "Horas", "KM", "Gas", "Outros", "Apurado", "Lucro", "V/h"];
   const rows = estado.turnos.map(t => {
     const min = diffHoras(t.horaInicio, t.horaFim);
     const lucro = t.apurado - (t.custos.abastecimento + t.custos.outros);
@@ -299,6 +300,7 @@ function exportarPDF() {
 }
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
 
 
 
