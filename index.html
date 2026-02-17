@@ -133,44 +133,44 @@
       <input id="totalCustos" class="readonly" readonly>
     </div>
 
-    <div class="linha">
-      <label>Valor Apurado R$</label>
-      <input id="apurado" type="number" step="0.01">
-    </div>
-
-    <button class="btn-save" onclick="inserirApurado()">💾 Salvar Dados</button>
-
-    <div class="nav">
+   <div class="nav">
       <button onclick="irPara('menu')">⬅️ Menu</button>
       <button onclick="irPara('fimTurno')">➡️ Finalizar</button>
     </div>
   </section>
 
-    <!-- ================= FIM DE TURNO ================= -->
-  <section id="fimTurno" class="tela">
-    <h2>⏹ Finalizar Turno</h2>
+   <!-- ================= FIM DE TURNO ================= -->
+<section id="fimTurno" class="tela">
+  <h2>⏹ Finalizar Turno</h2>
 
-    <div class="linha">
-      <label>Hora Fim</label>
-      <input id="horaFim" type="tel" placeholder="00:00">
-    </div>
+  <div class="linha">
+    <label>Hora Fim</label>
+    <input id="horaFim" type="tel" placeholder="00:00">
+  </div>
 
-    <!-- Botão Capturar (Novo Padrão) -->
-    <button class="btn-confirmar" onclick="capturarHora('horaFim')" style="margin-top: 5px; margin-bottom: 25px;">
-      ⏱️ Capturar hora atual
-    </button>
+  <button class="btn-confirmar" onclick="capturarHora('horaFim')">
+    ⏱️ Capturar hora atual
+  </button>
 
-    <div class="linha">
-      <label>KM Final</label>
-      <input id="kmFinal" type="number">
-    </div>
+  <div class="linha">
+    <label>KM Final</label>
+    <input id="kmFinal" type="number">
+  </div>
 
-    <button class="btn-danger" onclick="confirmarFimTurno()">⏹ Encerrar Turno</button>
+  <!-- CAMPO MOVIDO PARA CÁ -->
+  <div class="linha" style="margin-top: 20px;">
+    <label>Valor Apurado R$</label>
+    <input id="apurado" type="number" step="0.01" placeholder="0.00">
+  </div>
 
-    <div class="nav">
-      <button onclick="irPara('menu')">⬅️ Menu</button>
-    </div>
-  </section>
+  <button class="btn-danger" onclick="confirmarFimTurno()" style="margin-top: 20px;">
+    ⏹ Encerrar Turno
+  </button>
+
+  <div class="nav">
+    <button onclick="irPara('menu')">⬅️ Menu</button>
+  </div>
+</section>
 
   <!-- ================= RESUMO DO DIA ================= -->
   <section id="resumoDia" class="tela">
@@ -261,6 +261,7 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
