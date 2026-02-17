@@ -102,7 +102,7 @@
 
     <div class="linha">
       <label>Hora Início</label>
-      <input id="horaInicio" type="tel" placeholder="00:00">
+      <input id="horaInicio" type="tel" inputmode="numeric" placeholder="00:00" maxlength="5">
     </div>
     
     <!-- Botão Capturar (Novo Padrão) -->
@@ -196,7 +196,7 @@
 
   <div class="linha">
     <label>Hora Fim</label>
-    <input id="horaFim" type="tel" placeholder="00:00">
+    <input id="horaFim" type="tel" inputmode="numeric" placeholder="00:00" maxlength="5">
   </div>
 
   <button class="btn-confirmar" onclick="capturarHora('horaFim')">
@@ -312,6 +312,7 @@
 <script src="./app.js"></script>
 </body>
 </html>
+
 
 
 
