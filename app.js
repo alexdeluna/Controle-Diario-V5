@@ -79,6 +79,7 @@ function adicionarAbastecimento() {
     document.getElementById('totalAbastecido').value = estado.turnoAtual.custos.abastecimento.toFixed(2);
     document.getElementById('valorAbastecimento').value = '';
     atualizarTotalCustos(); salvar();
+     mostrarAvisoSalvo();
   }
 }
 
@@ -89,6 +90,7 @@ function adicionarOutrosCustos() {
     document.getElementById('totalOutrosCustos').value = estado.turnoAtual.custos.outros.toFixed(2);
     document.getElementById('valorOutrosCustos').value = '';
     atualizarTotalCustos(); salvar();
+     mostrarAvisoSalvo();
   }
 }
 
@@ -317,6 +319,13 @@ function exportarPDF() {
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
 
+function mostrarAvisoSalvo() {
+  const aviso = document.getElementById('status-salvamento');
+  aviso.style.opacity = '1';
+  setTimeout(() => {
+    aviso.style.opacity = '0';
+  }, 2000); // O aviso some após 2 segundos
+}
 
 
 
