@@ -181,27 +181,20 @@ function editarValorCustoFixo(index, novoValor) {
 }
 
 function renderizarListaCustosFixos() {
-  const lista = document.getElementById('listaCustosFixos'); lista.innerHTML = ''; let total = 0;
-  estado.metas.compromissos.forEach((c, index) => {
+  const lista = document.getElementById('listaCustosFixos'); 
+  lista.innerHTML = ''; 
+  let total = 0;
+
+  estado.metas.compromissos.forEach((c) => {
     total += c.valor;
     const li = document.createElement('li');
-    li.className = "card-historico";
-    li.style = "display:flex; flex-direction:column; gap:5px; margin-bottom:10px; padding:8px; border:1px solid #ccc; border-radius:5px; background:#fafafa;";
     li.innerHTML = `
-  <div style="display:flex; align-items:center; gap:6px; width:100%;">
-    <input type="text"
-           value="${c.nome}"
-           style="flex:1;"
-           onchange="editarNomeCustoFixo(${index}, this.value)">
-
-    <input type="number"
-           value="${c.valor}"
-           style="width:90px;"
-           onchange="editarValorCustoFixo(${index}, this.value)">
-
-    <button onclick="excluirCustoFixo(${c.id})">🗑️</button>
-  </div>
-`;
+      <div class="info-custo">
+        <span class="nome-item">${c.nome}</span>
+        <span class="valor-item">R$ ${c.valor.toFixed(2)}</span>
+      </div>
+      <button class="btn-deletar" onclick="excluirCustoFixo(${c.id})">🗑️</button>
+    `;
     lista.appendChild(li);
   });
   document.getElementById('totalCustosFixos').value = total.toFixed(2);
@@ -315,6 +308,7 @@ function exportarPDF() {
 }
 
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
 
 
 
