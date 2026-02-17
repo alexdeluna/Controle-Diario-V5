@@ -93,35 +93,37 @@ button:active {
   font-size: 32px;
 }
 
-/* =========================
-   LINHAS DE FORMULÁRIO
-   ========================= */
+/* LINHAS DE FORMULÁRIO - Ajustadas para largura total e altura */
 .linha {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  flex-direction: column; /* Faz o label ficar em cima do input */
+  gap: 8px;
   width: 100%;
+  margin-bottom: 20px;    /* Espaço entre um campo e outro */
 }
 
-/* LABELS */
+/* LABELS - Mais altos e com área de toque maior */
 label {
-  flex: 1;
-  font-size: 18px;
+  display: block;
+  width: 100%;
+  font-size: 19px;        /* Aumentado levemente */
   font-weight: bold;
+  padding: 10px 0;        /* Deixa o label "mais alto" visualmente */
+  color: #e0e0e0;
 }
 
 /* INPUTS */
 input {
-  flex: 1;
-  padding: 16px;
+  width: 100%;
+  min-height: 58px;       /* Altura fixa confortável para o toque */
+  padding: 14px;
   font-size: 20px;
   border-radius: 12px;
   border: none;
-  outline: none;
   background: #2b2b2b;
   color: #ffffff;
+  appearance: none;       /* Remove sombras padrão do iOS */
 }
-
 input::placeholder {
   color: #aaaaaa;
 }
@@ -296,22 +298,20 @@ li {
 
 .label-grande {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;      /* Um pouco maior para destaque */
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding: 5px 0;
+  width: 100%;            /* Ajustável à largura da tela */
 }
 
 .input-grande {
   width: 100%;
-  min-height: 80px;        /* 👈 FORÇA ALTURA REAL */
-  font-size: 1.6rem;      /* 👈 TEXTO MAIOR */
-  padding: 18px;          /* 👈 MAIS ÁREA DE TOQUE */
-  border-radius: 16px;
-  border: none;
-  background: #2b2b2b;
-  color: #fff;
-  box-sizing: border-box;
-  line-height: 1.4;
+  min-height: 70px;       /* Ajustado para não exagerar no mobile */
+  font-size: 1.8rem;      /* Valor bem visível */
+  text-align: center;     /* Centraliza o valor para facilitar leitura */
+  background: #333;
+  border: 2px solid #444; /* Borda sutil para definir limite */
 }
 
 .input-grande::placeholder {
