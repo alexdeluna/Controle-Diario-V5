@@ -69,7 +69,9 @@ function confirmarInicioTurno() {
     horaInicio: inputHora.value, kmInicial: km, horaFim: '', kmFinal: 0,
     custos: { abastecimento: 0, outros: 0 }, apurado: 0
   };
-  salvar(); irPara('menu');
+  salvar();
+  sincronizarInterface();
+  irPara('menu');
 }
 
 function adicionarAbastecimento() {
@@ -132,7 +134,7 @@ function confirmarFimTurno() {
   estado.turnoAtual = null;
   
   salvar();
-  
+  sincronizarInterface();
   // Limpa o campo visual para não aparecer o valor do dia anterior na próxima vez
   document.getElementById('apurado').value = '';
   
@@ -398,6 +400,7 @@ window.onload = () => {
     document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-BR');
   sincronizarInterface();
 };
+
 
 
 
